@@ -63,8 +63,8 @@ const users: User[] = [
 
 export function DirectMessages() {
   return (
-    <div className="h-full flex flex-col">
-      <div className="flex-1 overflow-y-auto">
+    <div className="h-screen bg-white border-r border-gray-200 flex flex-col">
+      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-dark-700 scrollbar-track-transparent">
         <div className="p-4 space-y-6">
           <div className="relative border-b border-gray-100 pb-4">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
