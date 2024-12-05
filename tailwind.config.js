@@ -5,6 +5,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        'scrollbar-thumb': '#E5E7EB',
+        'scrollbar-track': 'transparent',
         dark: {
           50: '#f9fafb',
           100: '#f3f4f6',
@@ -20,5 +22,7 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 };

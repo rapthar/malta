@@ -22,7 +22,7 @@ export function LeftSidebar() {
   const { activeSection, setActiveSection } = useNavigation();
 
   return (
-    <div className="w-16 bg-white border-r border-gray-100 flex flex-col items-center py-4">
+    <div className="w-16 bg-white dark:bg-dark-800 border-r border-gray-100 dark:border-dark-700 flex flex-col items-center py-4">
       <div className="space-y-4 mb-8">
         {menuItems.map((item) => (
           <button
@@ -30,8 +30,8 @@ export function LeftSidebar() {
             onClick={() => setActiveSection(item.id)}
             className={`p-3 rounded-xl transition-colors ${
               activeSection === item.id
-                ? 'bg-indigo-50 text-indigo-600'
-                : 'text-gray-400 hover:text-gray-600 hover:bg-gray-50'
+                ? 'bg-indigo-50 dark:bg-dark-700 text-indigo-600 dark:text-indigo-400'
+                : 'text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200 hover:bg-gray-50 dark:hover:bg-dark-700'
             }`}
           >
             <item.icon className="w-5 h-5" />
@@ -51,13 +51,13 @@ export function LeftSidebar() {
               className="w-10 h-10 rounded-xl object-cover"
             />
             {index === 0 && (
-              <span className="absolute -top-1 -right-1 block h-3 w-3 rounded-full bg-red-400 ring-2 ring-white" />
+              <span className="absolute -top-1 -right-1 block h-3 w-3 rounded-full bg-red-400 ring-2 ring-white dark:ring-dark-800" />
             )}
           </button>
         ))}
       </div>
 
-      <button className="mt-auto p-3 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-xl">
+      <button className="mt-auto p-3 text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200 hover:bg-gray-50 dark:hover:bg-dark-700 rounded-xl">
         <Menu className="w-5 h-5" />
       </button>
     </div>

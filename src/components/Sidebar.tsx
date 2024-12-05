@@ -23,15 +23,15 @@ export function Sidebar() {
   const { activeSection, setActiveSection } = useNavigation();
 
   return (
-    <div className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col">
-      <div className="p-6 flex items-center space-x-3">
-        <Zap className="w-6 h-6 text-indigo-600" />
-        <h1 className="text-xl font-bold text-gray-900">Malta Company</h1>
+    <div className="w-64 h-screen bg-white dark:bg-dark-800 border-r border-gray-200 dark:border-dark-700 flex flex-col">
+      <div className="p-6 flex items-center space-x-3 border-b border-gray-100 dark:border-dark-700">
+        <Zap className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+        <h1 className="text-xl font-bold text-gray-900 dark:text-white">Malta Company</h1>
       </div>
 
       <div className="flex-1 overflow-y-auto px-3 space-y-6 py-6">
         <div>
-          <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
+          <h3 className="px-3 text-xs font-semibold text-gray-500 dark:text-dark-400 uppercase tracking-wider mb-1">
             Main Menu
           </h3>
           <nav className="space-y-1">
@@ -39,16 +39,16 @@ export function Sidebar() {
               <button
                 key={item.id}
                 onClick={() => setActiveSection(item.id)}
-                className={`w-full flex items-center justify-between px-3 py-2 text-sm rounded-lg ${
-                  item.isActive ? 'text-indigo-600' : 'text-gray-600'
-                } ${item.id === 'dashboard' ? 'bg-gray-50' : 'hover:bg-gray-50'}`}
+                className={`w-full flex items-center justify-between px-3 py-2 text-sm rounded-lg 
+                  ${item.isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 dark:text-dark-400'} 
+                  ${item.id === 'dashboard' ? 'bg-gray-50 dark:bg-dark-700' : 'hover:bg-gray-50 dark:hover:bg-dark-700'}`}
               >
                 <div className="flex items-center space-x-2">
                   <item.icon className="w-5 h-5" />
                   <span>{item.label}</span>
                 </div>
                 {item.notifications && (
-                  <span className="ml-auto bg-pink-500 text-white px-2 py-0.5 rounded-full text-xs">
+                  <span className="ml-auto bg-pink-500 dark:bg-pink-400 text-white px-2 py-0.5 rounded-full text-xs">
                     {item.notifications}
                   </span>
                 )}
@@ -58,11 +58,11 @@ export function Sidebar() {
         </div>
 
         <div>
-          <h3 className="px-3 text-xs font-semibold text-indigo-600 mb-1">
+          <h3 className="px-3 text-xs font-semibold text-indigo-600 dark:text-indigo-400 mb-1">
             Projects
           </h3>
-          <div className="bg-gray-50 rounded-lg p-2">
-            <button className="w-full flex items-center justify-between p-2 text-indigo-600 hover:bg-white rounded-lg">
+          <div className="bg-gray-50 dark:bg-dark-700 rounded-lg p-2">
+            <button className="w-full flex items-center justify-between p-2 text-indigo-600 dark:text-indigo-400 hover:bg-white dark:hover:bg-dark-600 rounded-lg">
               <div className="flex items-center space-x-2">
                 <span className="text-xl">🏆</span>
                 <span className="text-sm">Zeeker Project</span>
@@ -76,7 +76,7 @@ export function Sidebar() {
               {projectSubMenu.map((item) => (
                 <button
                   key={item.id}
-                  className="w-full flex items-center space-x-2 px-2 py-1.5 text-sm text-gray-600 hover:bg-white rounded-lg"
+                  className="w-full flex items-center space-x-2 px-2 py-1.5 text-sm text-gray-600 dark:text-dark-400 hover:bg-white dark:hover:bg-dark-600 rounded-lg"
                 >
                   <item.icon className="w-4 h-4" />
                   <span>{item.label}</span>
@@ -88,19 +88,19 @@ export function Sidebar() {
           <div className="mt-2 space-y-1">
             <button className="w-full flex items-center space-x-2 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg">
               <span className="text-xl">🎯</span>
-              <span>Micoory_X Project</span>
+              <span className="dark:text-dark-200">Micoory_X Project</span>
             </button>
             <button className="w-full flex items-center space-x-2 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg">
               <span className="text-xl">🎨</span>
-              <span>Slash Motion Project</span>
+              <span className="dark:text-dark-200">Slash Motion Project</span>
             </button>
             <button className="w-full flex items-center space-x-2 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg">
               <span className="text-xl">📊</span>
-              <span>Diagramma Project</span>
+              <span className="dark:text-dark-200">Diagramma Project</span>
             </button>
           </div>
           
-          <button className="w-full text-sm text-gray-500 hover:text-gray-600 mt-2 px-3 py-2">
+          <button className="w-full text-sm text-gray-500 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 mt-2 px-3 py-2">
             SHOW MORE
           </button>
         </div>
