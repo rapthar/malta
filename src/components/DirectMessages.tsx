@@ -64,19 +64,17 @@ const users: User[] = [
 export function DirectMessages() {
   return (
     <div className="h-full flex flex-col">
-      <div className="sticky top-0 bg-white dark:bg-dark-800 p-4 border-b border-gray-100 dark:border-dark-700 z-10">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-dark-400 w-4 h-4" />
-          <input
-            type="text"
-            placeholder="Search"
-            className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-dark-700 rounded-lg text-sm focus:outline-none dark:text-dark-200 dark:placeholder-dark-400"
-          />
-        </div>
-      </div>
-
       <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-dark-700 scrollbar-track-transparent">
         <div className="p-4 space-y-8">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-dark-400 w-4 h-4" />
+            <input
+              type="text"
+              placeholder="Search"
+              className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-dark-700 rounded-lg text-sm focus:outline-none dark:text-dark-200 dark:placeholder-dark-400"
+            />
+          </div>
+
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xs font-semibold text-gray-500 dark:text-dark-400">DIRECT MESSAGES</h2>
             <button className="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium">
@@ -104,7 +102,6 @@ export function DirectMessages() {
               </div>
             ))}
           </div>
-          
           <button className="w-full text-sm text-gray-500 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 mt-4">
             SHOW MORE
           </button>
