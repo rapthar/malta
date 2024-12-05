@@ -51,7 +51,7 @@ const messages: Message[] = [
     user: {
       name: 'Kyle Peters',
       role: 'Web Designer',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+      avatar: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
     },
     content: 'When you starting a company you are thinking on how to cut expenses. One of such options to cut the startup costs is a company logo design. But is it good idea to order a cheap logo or work without company logo at all?',
     timestamp: '12:45 PM'
@@ -70,94 +70,108 @@ const messages: Message[] = [
 
 export function ChatPanel() {
   return (
-    <div className="h-screen flex-1 flex flex-col bg-white dark:bg-dark-800">
-      <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-dark-700">
-        <div className="flex items-center space-x-2">
-          <Phone className="w-5 h-5 text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200 cursor-pointer" />
-          <Video className="hidden sm:block w-5 h-5 text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200 cursor-pointer" />
+    <div className="h-screen flex-1 flex flex-col bg-white">
+      {/* Header */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+        <div className="flex items-center space-x-4">
+          <Phone className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
+          <Video className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
         </div>
-        <span className="flex items-center font-medium text-gray-900 dark:text-dark-200">
-          <span className="text-xl mr-2">🏆</span>
-          Zeeker Project
-        </span>
-        <Grid className="w-5 h-5 text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200 cursor-pointer" />
+        <div className="flex items-center space-x-2">
+          <span className="text-xl">🏆</span>
+          <span className="font-medium text-gray-900">Zeeker Project</span>
+        </div>
+        <Grid className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
       </div>
 
-      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-dark-700 scrollbar-track-transparent">
+      {/* Messages */}
+      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
         <div className="p-4 pb-8 space-y-6">
           {messages.map((message) => (
-            <div key={message.id} className="flex space-x-4">
+            <div key={message.id} className="group flex space-x-3">
               <img
                 src={message.user.avatar}
                 alt={message.user.name}
-                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full"
+                className="w-10 h-10 rounded-full flex-shrink-0"
               />
-              <div className="flex-1">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
-                  <span className="font-medium dark:text-dark-200">{message.user.name}</span>
-                  <span className="text-gray-500 dark:text-dark-400">{message.user.role}</span>
-                  <span className="text-gray-400 dark:text-dark-500">{message.timestamp}</span>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center space-x-2">
+                  <span className="font-medium text-gray-900">{message.user.name}</span>
+                  <span className="text-gray-500">{message.user.role}</span>
+                  <span className="text-gray-400">{message.timestamp}</span>
                 </div>
                 
                 {message.content && (
-                  <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-dark-300">{message.content}</p>
+                  <p className="mt-1 text-gray-600">{message.content}</p>
                 )}
-                
-                {message.attachments?.map((attachment) => (
-                  <div key={attachment.name} className="mt-2 bg-gray-50 dark:bg-dark-700 rounded-lg p-4">
+
+                {message.attachments && (
+                  <div className="mt-2 bg-gray-50 rounded-lg p-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium dark:text-dark-200">{attachment.name}</span>
-                      <span className="text-sm text-gray-500 dark:text-dark-400">{attachment.size}</span>
+                      <div className="flex items-center space-x-2">
+                        <span className="font-medium text-gray-900">{message.attachments[0].name}</span>
+                        <span className="text-gray-500">{message.attachments[0].size}</span>
+                      </div>
                     </div>
-                    {attachment.progress !== undefined && (
-                      <div className="mt-2 h-2 bg-gray-200 dark:bg-dark-600 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-indigo-500 rounded-full"
-                          style={{ width: `${attachment.progress}%` }}
+                    <div className="mt-2 relative">
+                      <div className="h-1 bg-gray-200 rounded">
+                        <div 
+                          className="h-1 bg-blue-500 rounded" 
+                          style={{ width: `${message.attachments[0].progress}%` }}
                         />
                       </div>
-                    )}
+                      <span className="absolute right-0 -top-6 text-gray-500">
+                        {message.attachments[0].progress}%
+                      </span>
+                    </div>
                   </div>
-                ))}
-                
+                )}
+
                 {message.images && (
-                  <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div className="mt-2 grid grid-cols-2 gap-2">
                     {message.images.map((image, index) => (
                       <img
                         key={index}
                         src={image}
                         alt={`Attachment ${index + 1}`}
-                        className="rounded-lg w-full h-32 sm:h-48 object-cover"
+                        className="rounded-lg w-full h-48 object-cover"
                       />
                     ))}
                   </div>
                 )}
+
+                <div className="mt-2 flex items-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button className="text-gray-400 hover:text-red-500">
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </button>
+                  <Flag className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                  <MoreHorizontal className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                </div>
               </div>
             </div>
           ))}
-          
-          <div className="flex justify-center">
-            <span className="px-3 py-1 text-sm text-gray-500 dark:text-dark-400 bg-gray-100 dark:bg-dark-700 rounded-full">Today</span>
-          </div>
+        </div>
+      </div>
 
-          <div className="mt-6 border-t border-gray-200 dark:border-dark-700 pt-4">
-            <div className="flex items-center space-x-1 sm:space-x-2">
-              <button className="p-2 text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200">
-                <Paperclip className="w-5 h-5" />
-              </button>
-              <button className="hidden sm:block p-2 text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200">
-                <Smile className="w-5 h-5" />
-              </button>
-              <input
-                type="text"
-                placeholder="Type a message..."
-                className="flex-1 border-0 focus:ring-0 px-2 sm:px-4 py-2 bg-transparent text-sm sm:text-base text-gray-900 dark:text-dark-200 placeholder-gray-500 dark:placeholder-dark-400"
-              />
-              <button className="p-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">
-                <Send className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
+      {/* Input area */}
+      <div className="px-4 py-4 border-t border-gray-100">
+        <div className="flex items-center space-x-4">
+          <button className="text-gray-400 hover:text-gray-600">
+            <Paperclip className="w-5 h-5" />
+          </button>
+          <input
+            type="text"
+            placeholder="Type Message"
+            className="flex-1 bg-transparent focus:outline-none"
+          />
+          <button className="text-gray-400 hover:text-gray-600">
+            <Smile className="w-5 h-5" />
+          </button>
+          <button className="text-blue-500 hover:text-blue-600">
+            <Send className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </div>
