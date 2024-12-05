@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Phone, Video, Grid, Paperclip, Smile, Send, Flag, MoreHorizontal } from 'lucide-react';
 
 interface Message {
@@ -69,6 +69,16 @@ const messages: Message[] = [
 ];
 
 export function ChatPanel() {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   return (
     <div className="h-screen flex flex-col bg-white">
       {/* Header */}
@@ -227,6 +237,7 @@ export function ChatPanel() {
               </div>
             </div>
           </div>
+          <div ref={messagesEndRef} />
         </div>
       </div>
 
