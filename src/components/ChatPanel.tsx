@@ -185,7 +185,9 @@ export function ChatPanel() {
                 <span className="text-gray-500">{messages[2].user.role}</span>
                 <span className="text-gray-400">{messages[2].timestamp}</span>
               </div>
-              <p className="mt-1 text-gray-600">{messages[2].content}</p>
+              <div className="mt-2 bg-gray-50 rounded-lg p-4">
+                <p className="text-gray-600">{messages[2].content}</p>
+              </div>
               <div className="mt-2 flex items-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button className="text-gray-400 hover:text-red-500">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -211,7 +213,9 @@ export function ChatPanel() {
                 <span className="text-gray-500">{messages[3].user.role}</span>
                 <span className="text-gray-400">{messages[3].timestamp}</span>
               </div>
-              <p className="mt-1 text-gray-600">{messages[3].content}</p>
+              <div className="mt-2 bg-gray-50 rounded-lg p-4">
+                <p className="text-gray-600">{messages[3].content}</p>
+              </div>
               <div className="mt-2 flex items-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button className="text-gray-400 hover:text-red-500">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -230,7 +234,13 @@ export function ChatPanel() {
       <div className="px-4 py-4 border-t border-gray-100">
         <div className="flex items-center space-x-4">
           <button className="text-gray-400 hover:text-gray-600">
-            <Paperclip className="w-5 h-5" />
+            <Paperclip className="w-5 h-5 transform rotate-45" />
+          </button>
+          <button className="text-gray-400 hover:text-gray-600">
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path d="M9 10h.01M15 10h.01M9.5 15a3.5 3.5 0 005.5 0" />
+            </svg>
           </button>
           <input
             type="text"
@@ -238,10 +248,12 @@ export function ChatPanel() {
             className="flex-1 bg-transparent focus:outline-none text-gray-600"
           />
           <button className="text-gray-400 hover:text-gray-600">
-            <Smile className="w-5 h-5" />
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
           </button>
           <button className="text-blue-500 hover:text-blue-600">
-            <Send className="w-5 h-5 transform rotate-90" />
+            <Send className="w-5 h-5" />
           </button>
         </div>
       </div>
