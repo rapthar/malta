@@ -81,24 +81,10 @@ export function ChatPanel() {
 
   return (
     <div className="h-screen flex flex-col bg-white">
-      {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-        <div className="flex items-center space-x-4">
-          <Phone className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
-          <Video className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center">
-            <span className="text-lg">🏆</span>
-          </div>
-          <span className="font-medium text-gray-900">Zeeker Project</span>
-        </div>
-        <Grid className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
-      </div>
-
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
-        <div className="p-4 space-y-6">
+      {/* Chat Messages */}
+      <div className="flex-1 overflow-y-auto p-6">
+        {/* Messages */}
+        <div className="space-y-6">
           {/* Sarah's message with file */}
           <div className="group flex space-x-3">
             <img
