@@ -78,7 +78,9 @@ export function ChatPanel() {
           <Video className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
         </div>
         <div className="flex items-center space-x-2">
-          <span className="text-xl">🏆</span>
+          <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center">
+            <span className="text-lg">🏆</span>
+          </div>
           <span className="font-medium text-gray-900">Zeeker Project</span>
         </div>
         <Grid className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
@@ -87,75 +89,139 @@ export function ChatPanel() {
       {/* Messages */}
       <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
         <div className="p-4 space-y-6">
-          {messages.map((message) => (
-            <div key={message.id} className="group flex space-x-3">
-              <img
-                src={message.user.avatar}
-                alt={message.user.name}
-                className="w-10 h-10 rounded-full flex-shrink-0"
-              />
-              <div className="flex-1 min-w-0">
+          {/* Sarah's message with file */}
+          <div className="group flex space-x-3">
+            <img
+              src={messages[0].user.avatar}
+              alt={messages[0].user.name}
+              className="w-10 h-10 rounded-full flex-shrink-0"
+            />
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center space-x-2">
+                <span className="font-medium text-gray-900">{messages[0].user.name}</span>
+                <span className="text-gray-500">{messages[0].user.role}</span>
+                <span className="text-gray-400">{messages[0].timestamp}</span>
+              </div>
+              <div className="mt-2 bg-gray-50 rounded-lg p-4">
                 <div className="flex items-center space-x-2">
-                  <span className="font-medium text-gray-900">{message.user.name}</span>
-                  <span className="text-gray-500">{message.user.role}</span>
-                  <span className="text-gray-400">{message.timestamp}</span>
+                  <span className="text-blue-500">{messages[0].attachments![0].name}</span>
+                  <span className="text-gray-400">{messages[0].attachments![0].size}</span>
                 </div>
-
-                {message.content && (
-                  <p className="mt-1 text-gray-600">{message.content}</p>
-                )}
-
-                {message.attachments && (
-                  <div className="mt-2 bg-gray-50 rounded-lg p-4">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-blue-500">{message.attachments[0].name}</span>
-                      <span className="text-gray-400">{message.attachments[0].size}</span>
-                    </div>
-                    <div className="mt-2">
-                      <div className="text-gray-400 text-sm mb-1">Downloading...</div>
-                      <div className="relative">
-                        <div className="h-1 bg-gray-200 rounded">
-                          <div 
-                            className="h-1 bg-blue-500 rounded" 
-                            style={{ width: `${message.attachments[0].progress}%` }}
-                          />
-                        </div>
-                        <span className="absolute right-0 -top-6 text-blue-500">
-                          {message.attachments[0].progress}%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {message.images && (
-                  <div className="mt-2 grid grid-cols-2 gap-2">
-                    {message.images.map((image, index) => (
-                      <img
-                        key={index}
-                        src={image}
-                        alt={`Attachment ${index + 1}`}
-                        className="rounded-lg w-full h-48 object-cover"
+                <div className="mt-2">
+                  <div className="text-blue-400 text-sm mb-1">Downloading...</div>
+                  <div className="relative">
+                    <div className="h-1 bg-gray-200 rounded-full">
+                      <div 
+                        className="h-1 bg-blue-500 rounded-full" 
+                        style={{ width: '65%' }}
                       />
-                    ))}
+                    </div>
+                    <span className="absolute right-0 -top-6 text-blue-500">65%</span>
                   </div>
-                )}
-
-                <div className="mt-2 flex items-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button className="text-gray-400 hover:text-red-500">
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                    </svg>
-                  </button>
-                  <Flag className="w-4 h-4 text-gray-400 hover:text-gray-600" />
-                  <MoreHorizontal className="w-4 h-4 text-gray-400 hover:text-gray-600" />
                 </div>
               </div>
+              <div className="mt-2 flex items-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button className="text-gray-400 hover:text-red-500">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </button>
+                <Flag className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                <MoreHorizontal className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+              </div>
             </div>
-          ))}
+          </div>
 
+          {/* Edward's message with images */}
+          <div className="group flex space-x-3">
+            <img
+              src={messages[1].user.avatar}
+              alt={messages[1].user.name}
+              className="w-10 h-10 rounded-full flex-shrink-0"
+            />
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center space-x-2">
+                <span className="font-medium text-gray-900">{messages[1].user.name}</span>
+                <span className="text-gray-500">{messages[1].user.role}</span>
+                <span className="text-gray-400">{messages[1].timestamp}</span>
+              </div>
+              <div className="mt-2 grid grid-cols-2 gap-2">
+                {messages[1].images!.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Image ${index + 1}`}
+                    className="rounded-lg w-full h-48 object-cover"
+                  />
+                ))}
+              </div>
+              <div className="mt-2 flex items-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button className="text-gray-400 hover:text-red-500">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </button>
+                <Flag className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                <MoreHorizontal className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+              </div>
+            </div>
+          </div>
+
+          {/* Today separator */}
           <div className="flex justify-center">
             <span className="px-4 py-1 text-sm text-gray-500 bg-gray-50 rounded-full">Today</span>
+          </div>
+
+          {/* Kyle's message */}
+          <div className="group flex space-x-3">
+            <img
+              src={messages[2].user.avatar}
+              alt={messages[2].user.name}
+              className="w-10 h-10 rounded-full flex-shrink-0"
+            />
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center space-x-2">
+                <span className="font-medium text-gray-900">{messages[2].user.name}</span>
+                <span className="text-gray-500">{messages[2].user.role}</span>
+                <span className="text-gray-400">{messages[2].timestamp}</span>
+              </div>
+              <p className="mt-1 text-gray-600">{messages[2].content}</p>
+              <div className="mt-2 flex items-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button className="text-gray-400 hover:text-red-500">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </button>
+                <Flag className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                <MoreHorizontal className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+              </div>
+            </div>
+          </div>
+
+          {/* Susan's message */}
+          <div className="group flex space-x-3">
+            <img
+              src={messages[3].user.avatar}
+              alt={messages[3].user.name}
+              className="w-10 h-10 rounded-full flex-shrink-0"
+            />
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center space-x-2">
+                <span className="font-medium text-gray-900">{messages[3].user.name}</span>
+                <span className="text-gray-500">{messages[3].user.role}</span>
+                <span className="text-gray-400">{messages[3].timestamp}</span>
+              </div>
+              <p className="mt-1 text-gray-600">{messages[3].content}</p>
+              <div className="mt-2 flex items-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button className="text-gray-400 hover:text-red-500">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </button>
+                <Flag className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                <MoreHorizontal className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -175,7 +241,7 @@ export function ChatPanel() {
             <Smile className="w-5 h-5" />
           </button>
           <button className="text-blue-500 hover:text-blue-600">
-            <Send className="w-5 h-5" />
+            <Send className="w-5 h-5 transform rotate-90" />
           </button>
         </div>
       </div>
