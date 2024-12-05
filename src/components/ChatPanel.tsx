@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Phone, Video, Grid, Paperclip, Smile, Send, Flag, MoreHorizontal } from 'lucide-react';
+import { Phone, Video, Grid, Paperclip, Smile, Send, Flag, MoreHorizontal, Search } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -83,17 +83,43 @@ export function ChatPanel() {
     <div className="h-screen flex flex-col bg-white">
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+        {/* Navigation */}
+        <nav className="flex items-center space-x-8">
+          <a href="#" className="text-gray-700 hover:text-gray-900">Dashboard</a>
+          <a href="#" className="text-gray-700 hover:text-gray-900">Teams</a>
+          <a href="#" className="text-gray-700 hover:text-gray-900">News</a>
+          <a href="#" className="text-gray-700 hover:text-gray-900">Library</a>
+          <a href="#" className="text-gray-700 hover:text-gray-900">Contacts</a>
+        </nav>
+
+        {/* Search and Profile */}
         <div className="flex items-center space-x-4">
-          <Phone className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
-          <Video className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center">
-            <span className="text-lg">🏆</span>
+          {/* Search */}
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search"
+              className="pl-10 pr-4 py-2 w-80 bg-gray-50 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-200"
+            />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
           </div>
-          <span className="font-medium text-gray-900">Zeeker Project</span>
+
+          {/* User Profile */}
+          <div className="flex items-center space-x-2">
+            <div className="relative">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt="Emily Johnson"
+                className="w-8 h-8 rounded-full"
+              />
+              <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm font-medium text-gray-900">Emily Johnson</span>
+              <span className="text-xs text-gray-500">@emily</span>
+            </div>
+          </div>
         </div>
-        <Grid className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
       </div>
 
       {/* Messages */}
