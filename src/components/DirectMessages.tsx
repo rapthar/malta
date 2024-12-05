@@ -75,8 +75,8 @@ export function DirectMessages() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto">
-        <div className="p-4 space-y-8 scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-dark-700 scrollbar-track-transparent">
+      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-dark-700 scrollbar-track-transparent">
+        <div className="p-4 space-y-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xs font-semibold text-gray-500 dark:text-dark-400">DIRECT MESSAGES</h2>
             <button className="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium">
