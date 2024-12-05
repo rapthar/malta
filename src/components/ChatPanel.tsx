@@ -70,7 +70,7 @@ const messages: Message[] = [
 
 export function ChatPanel() {
   return (
-    <div className="h-screen flex-1 flex flex-col bg-white">
+    <div className="h-screen flex flex-col bg-white">
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
         <div className="flex items-center space-x-4">
@@ -86,7 +86,7 @@ export function ChatPanel() {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
-        <div className="p-4 pb-8 space-y-6">
+        <div className="p-4 space-y-6">
           {messages.map((message) => (
             <div key={message.id} className="group flex space-x-3">
               <img
