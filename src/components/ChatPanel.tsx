@@ -83,79 +83,81 @@ export function ChatPanel() {
         <Grid className="w-5 h-5 text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200 cursor-pointer" />
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-6">
-        {messages.map((message) => (
-          <div key={message.id} className="flex space-x-4">
-            <img
-              src={message.user.avatar}
-              alt={message.user.name}
-              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full"
-            />
-            <div className="flex-1">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
-                <span className="font-medium dark:text-dark-200">{message.user.name}</span>
-                <span className="text-gray-500 dark:text-dark-400">{message.user.role}</span>
-                <span className="text-gray-400 dark:text-dark-500">{message.timestamp}</span>
-              </div>
-              
-              {message.content && (
-                <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-dark-300">{message.content}</p>
-              )}
-              
-              {message.attachments?.map((attachment) => (
-                <div key={attachment.name} className="mt-2 bg-gray-50 dark:bg-dark-700 rounded-lg p-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium dark:text-dark-200">{attachment.name}</span>
-                    <span className="text-sm text-gray-500 dark:text-dark-400">{attachment.size}</span>
-                  </div>
-                  {attachment.progress !== undefined && (
-                    <div className="mt-2 h-2 bg-gray-200 dark:bg-dark-600 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-indigo-500 rounded-full"
-                        style={{ width: `${attachment.progress}%` }}
-                      />
+      <div className="flex-1 overflow-y-auto p-4">
+        <div className="space-y-6">
+          {messages.map((message) => (
+            <div key={message.id} className="flex space-x-4">
+              <img
+                src={message.user.avatar}
+                alt={message.user.name}
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full"
+              />
+              <div className="flex-1">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
+                  <span className="font-medium dark:text-dark-200">{message.user.name}</span>
+                  <span className="text-gray-500 dark:text-dark-400">{message.user.role}</span>
+                  <span className="text-gray-400 dark:text-dark-500">{message.timestamp}</span>
+                </div>
+                
+                {message.content && (
+                  <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-dark-300">{message.content}</p>
+                )}
+                
+                {message.attachments?.map((attachment) => (
+                  <div key={attachment.name} className="mt-2 bg-gray-50 dark:bg-dark-700 rounded-lg p-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium dark:text-dark-200">{attachment.name}</span>
+                      <span className="text-sm text-gray-500 dark:text-dark-400">{attachment.size}</span>
                     </div>
-                  )}
-                </div>
-              ))}
-              
-              {message.images && (
-                <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {message.images.map((image, index) => (
-                    <img
-                      key={index}
-                      src={image}
-                      alt={`Attachment ${index + 1}`}
-                      className="rounded-lg w-full h-32 sm:h-48 object-cover"
-                    />
-                  ))}
-                </div>
-              )}
+                    {attachment.progress !== undefined && (
+                      <div className="mt-2 h-2 bg-gray-200 dark:bg-dark-600 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-indigo-500 rounded-full"
+                          style={{ width: `${attachment.progress}%` }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                ))}
+                
+                {message.images && (
+                  <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {message.images.map((image, index) => (
+                      <img
+                        key={index}
+                        src={image}
+                        alt={`Attachment ${index + 1}`}
+                        className="rounded-lg w-full h-32 sm:h-48 object-cover"
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+          
+          <div className="flex justify-center">
+            <span className="px-3 py-1 text-sm text-gray-500 dark:text-dark-400 bg-gray-100 dark:bg-dark-700 rounded-full">Today</span>
+          </div>
+
+          <div className="mt-6 border-t border-gray-200 dark:border-dark-700 pt-4">
+            <div className="flex items-center space-x-1 sm:space-x-2">
+              <button className="p-2 text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200">
+                <Paperclip className="w-5 h-5" />
+              </button>
+              <button className="hidden sm:block p-2 text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200">
+                <Smile className="w-5 h-5" />
+              </button>
+              <input
+                type="text"
+                placeholder="Type a message..."
+                className="flex-1 border-0 focus:ring-0 px-2 sm:px-4 py-2 bg-transparent text-sm sm:text-base text-gray-900 dark:text-dark-200 placeholder-gray-500 dark:placeholder-dark-400"
+              />
+              <button className="p-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">
+                <Send className="w-5 h-5" />
+              </button>
             </div>
           </div>
-        ))}
-        
-        <div className="flex justify-center">
-          <span className="px-3 py-1 text-sm text-gray-500 dark:text-dark-400 bg-gray-100 dark:bg-dark-700 rounded-full">Today</span>
-        </div>
-      </div>
-      
-      <div className="border-t border-gray-200 dark:border-dark-700 p-4 bg-white dark:bg-dark-800">
-        <div className="flex items-center space-x-1 sm:space-x-2">
-          <button className="p-2 text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200">
-            <Paperclip className="w-5 h-5" />
-          </button>
-          <button className="hidden sm:block p-2 text-gray-400 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-200">
-            <Smile className="w-5 h-5" />
-          </button>
-          <input
-            type="text"
-            placeholder="Type a message..."
-            className="flex-1 border-0 focus:ring-0 px-2 sm:px-4 py-2 bg-transparent text-sm sm:text-base text-gray-900 dark:text-dark-200 placeholder-gray-500 dark:placeholder-dark-400"
-          />
-          <button className="p-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">
-            <Send className="w-5 h-5" />
-          </button>
         </div>
       </div>
     </div>
