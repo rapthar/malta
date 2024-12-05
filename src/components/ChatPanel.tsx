@@ -100,29 +100,30 @@ export function ChatPanel() {
                   <span className="text-gray-500">{message.user.role}</span>
                   <span className="text-gray-400">{message.timestamp}</span>
                 </div>
-                
+
                 {message.content && (
                   <p className="mt-1 text-gray-600">{message.content}</p>
                 )}
 
                 {message.attachments && (
                   <div className="mt-2 bg-gray-50 rounded-lg p-4">
-                    <div className="flex justify-between items-center">
-                      <div className="flex items-center space-x-2">
-                        <span className="font-medium text-gray-900">{message.attachments[0].name}</span>
-                        <span className="text-gray-500">{message.attachments[0].size}</span>
-                      </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-blue-500">{message.attachments[0].name}</span>
+                      <span className="text-gray-400">{message.attachments[0].size}</span>
                     </div>
-                    <div className="mt-2 relative">
-                      <div className="h-1 bg-gray-200 rounded">
-                        <div 
-                          className="h-1 bg-blue-500 rounded" 
-                          style={{ width: `${message.attachments[0].progress}%` }}
-                        />
+                    <div className="mt-2">
+                      <div className="text-gray-400 text-sm mb-1">Downloading...</div>
+                      <div className="relative">
+                        <div className="h-1 bg-gray-200 rounded">
+                          <div 
+                            className="h-1 bg-blue-500 rounded" 
+                            style={{ width: `${message.attachments[0].progress}%` }}
+                          />
+                        </div>
+                        <span className="absolute right-0 -top-6 text-blue-500">
+                          {message.attachments[0].progress}%
+                        </span>
                       </div>
-                      <span className="absolute right-0 -top-6 text-gray-500">
-                        {message.attachments[0].progress}%
-                      </span>
                     </div>
                   </div>
                 )}
@@ -152,6 +153,10 @@ export function ChatPanel() {
               </div>
             </div>
           ))}
+
+          <div className="flex justify-center">
+            <span className="px-4 py-1 text-sm text-gray-500 bg-gray-50 rounded-full">Today</span>
+          </div>
         </div>
       </div>
 
@@ -164,7 +169,7 @@ export function ChatPanel() {
           <input
             type="text"
             placeholder="Type Message"
-            className="flex-1 bg-transparent focus:outline-none"
+            className="flex-1 bg-transparent focus:outline-none text-gray-600"
           />
           <button className="text-gray-400 hover:text-gray-600">
             <Smile className="w-5 h-5" />
